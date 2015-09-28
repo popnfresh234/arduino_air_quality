@@ -1,26 +1,21 @@
 import processing.serial.*;
 
 Serial myPort;
-short portIndex = 4;
-String value;
 PrintWriter output;
 
 void setup(){
-  String portName = Serial.list()[0];
+  String portName = Serial.list()[1];
   myPort = new Serial(this, portName, 9600);
-  output = createWriter("data.txt");
+  output = createWriter("data.csv");
 }
 
 void draw(){
 
-  while(myPort.available()>0){
-   value = myPort.readStringUntil('\n');
-
-  }
-  if(value!= null){
-  println(value);
-  output.println(value);
-  value = null;
+  if(myPort.available()>0){
+   String value = myPort.readString();
+   if(value != null){
+     output.print(value);
+   }
   }
 }
 
