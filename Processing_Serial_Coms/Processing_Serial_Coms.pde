@@ -6,7 +6,7 @@ String value;
 PrintWriter output;
 
 void setup(){
-  String portName = Serial.list()[1];
+  String portName = Serial.list()[0];
   myPort = new Serial(this, portName, 9600);
   output = createWriter("data.txt");
 }
